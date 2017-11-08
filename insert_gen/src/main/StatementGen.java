@@ -36,14 +36,10 @@ public class StatementGen {
 		}
 		
 		//生成插入语句过程
-		DevopsSimulatorConfig cfg = new DevopsSimulatorConfig(start, end, HostCount);
-		DevopsSimulator sim = cfg.ToSimulator(rand);
-		Point point = new Point();
+		DevopsSimulatorConfig cfg = new DevopsSimulatorConfig(start, end, HostCount, rand);
 		
-		while(!sim.Finished()){
-			sim.Next(point);
-			out.write(point.creatInsertStatement()+"\n");
-			point.Reset();	
+		while(!cfg.Finished()){
+			out.write(cfg.createInsertSQLStatment()+"\n");	
 		}
 
 		out.close();
